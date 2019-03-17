@@ -21,7 +21,7 @@
           $descr_imovel = $_POST['descricao'];
             
           $imovel = new cad_imovel_model();
-          $cadastro = $imovel->cadastrarImovel($cod_imovel,$descr_imovel);
+          $cadastro = $imovel->cadastrarImovel($descr_imovel);
           
         if($cadastro){
         	$retorno = array("codigo" => 1 ,"msg" => "cadastrado com sucesso!");
@@ -33,6 +33,22 @@
         	echo json_encode($retorno);
 
         }
+    }else if($funcao='excluir'){
+        $cod_imovel = $_POST['codigo_imovel'];
+          
+        $imovel = new cad_imovel_model();
+        $cadastro = $imovel->excluir($descr_imovel);
+        
+      if($cadastro){
+          $retorno = array("codigo" => 1 ,"msg" => "Excluido com sucesso!");
+          echo json_encode($retorno);
+
+      }else{
+          
+          $retorno = array("codigo" => 0 ,"msg" => "erro ao Excluir!");
+          echo json_encode($retorno);
+
+      }
     }
  
 	 

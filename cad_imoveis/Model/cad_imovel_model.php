@@ -5,18 +5,7 @@ class Cad_imovel_model extends Conexao{
     private $query;
     private $retorno;
 
-    // private $recnum;
-    // private $id_espera;
-    // private $qtd_espera;
-    // private $id_usuario; 
-    // private $situacao;
-    // private $codigo_barra;
-    // private $id_produto;
-    // private $id_palete;
-    // private $log;
-    // private $log_data;
-    // private $log_hora;
-
+   
 	public function __construct(){
         
         parent::__construct();
@@ -32,9 +21,9 @@ class Cad_imovel_model extends Conexao{
         return $this->retorno;
     }
 
-    public function cadastrarImovel($cod_imo,$desc){
+    public function cadastrarImovel($desc){
 
-        $this->query = "insert into cad_imovel (cod_imo,descr)  values ({$cod_imo},'{$desc}')";
+        $this->query = "insert into cad_imovel (descr)  values ('{$desc}')";
        
         $stmt = $this->pdo->prepare($this->query);
         $this->retorno = $stmt->execute(); 
