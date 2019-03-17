@@ -37,7 +37,7 @@
         $cod_imovel = $_POST['codigo_imovel'];
           
         $imovel = new cad_imovel_model();
-        $cadastro = $imovel->excluir($descr_imovel);
+        $cadastro = $imovel->excluir($cod_imovel);
         
       if($cadastro){
           $retorno = array("codigo" => 1 ,"msg" => "Excluido com sucesso!");
