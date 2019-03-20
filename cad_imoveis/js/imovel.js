@@ -11,7 +11,15 @@ $(document).ready(function() {
   listar_imoveis();
 });
 
+function limparModal() {
+  $(".input-cadastro").each(function(index) {
+    $(this).val("");
+  });
+}
+
 function listar_imoveis() {
+  limparModal();
+  $("#tb_listar_imoveis").html(" ");
   $.getJSON(url + "funcao=listar", function(data) {
     console.log(data);
 
@@ -65,6 +73,9 @@ function cadastrar_imovel() {
 
     if (data.codigo == 1) {
       console.log("sucesso");
+
+      listar_imoveis();
+
       $("#msg-sucesso").text(data.msg);
       $("#alertaSucesso ")
         .show()
@@ -72,6 +83,7 @@ function cadastrar_imovel() {
         .fadeOut();
     } else {
       console.log("erro");
+
       $("#msg-erro").text(data.msg);
       $("#alertaDanger ")
         .show()
@@ -79,11 +91,6 @@ function cadastrar_imovel() {
         .fadeOut();
     }
   });
-
-  setTimeout(function() {
-    $("#tb_listar_imoveis").load("#tb_listar_imoveis"); //parte da mesma página
-    location.reload(1000);
-  }, 2500);
 }
 
 function deletar_imovel(codigo_imovel) {
@@ -98,6 +105,7 @@ function deletar_imovel(codigo_imovel) {
 
     if (data.codigo == 1) {
       console.log("sucesso");
+      listar_imoveis();
       $("#msg-sucesso").text(data.msg);
       $("#alertaSucesso ")
         .show()
@@ -105,6 +113,7 @@ function deletar_imovel(codigo_imovel) {
         .fadeOut();
     } else {
       console.log("erro");
+      listar_imoveis();
       $("#msg-erro").text(data.msg);
       $("#alertaDanger ")
         .show()
@@ -112,11 +121,6 @@ function deletar_imovel(codigo_imovel) {
         .fadeOut();
     }
   });
-
-  setTimeout(function() {
-    $("#tb_listar_imoveis").load(" #tb_listar_imoveis"); //parte da mesma página
-    location.reload(1000);
-  }, 2500);
 }
 
 function addFormAtualizar(descr, cod_imo) {
@@ -141,6 +145,7 @@ function atualizar_imoveis() {
 
     if (data.codigo == 1) {
       console.log("sucesso");
+      listar_imoveis();
       $("#msg-sucesso").text(data.msg);
       $("#alertaSucesso ")
         .show()
@@ -148,6 +153,7 @@ function atualizar_imoveis() {
         .fadeOut();
     } else {
       console.log("erro");
+      listar_imoveis();
       $("#msg-erro").text(data.msg);
       $("#alertaDanger ")
         .show()
@@ -155,9 +161,4 @@ function atualizar_imoveis() {
         .fadeOut();
     }
   });
-
-  setTimeout(function() {
-    $("#tb_listar_imoveis").load(" #tb_listar_imoveis"); //parte da mesma página
-    location.reload(1000);
-  }, 2500);
 }

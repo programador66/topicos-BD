@@ -8,7 +8,7 @@
                 
                
                 <script type="text/javascript" src="../js/jquery-3.3.1.min.map"></script>   
-                <script type="text/javascript" src="../js/imovel.js"></script>   
+                <script type="text/javascript" src="../js/locador.js"></script>   
                 <link rel="stylesheet" type="text/css" href="../js/principal.css">
                 <link rel="stylesheet" href ="../js/css/bootstrap.min.css" >
                
@@ -17,12 +17,9 @@
  <body>
        
     <nav class="navbar navbar-dark bg-dark">
-            <a class="navbar-brand" href="#" style="margin-left:2%;">IMOVEIS</a>
+            <a class="navbar-brand" href="#" style="margin-left:2%;">Locador</a>
             <ul class="navbar-nav mr-auto mt-2 mt-lg-0">  
-            <li class="nav-item">
-              <a class="nav-link" href="#">Imoveis</a>
-
-            </li>
+           
             </ul>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="true" aria-label="Toggle navigation">
               <span class="navbar-toggler-icon"></span>
@@ -64,16 +61,21 @@
 
     <!-- tabela -->   
   <div class="container">
-        <table class="table" id="imoveis">
+        <table class="table" id="">
                 <thead class="thead-light">
                 <tr>
-                  <th scope="col">Código</th>
-                  <th scope="col">Imovel Descrição</th>
-                  
-                  <th scope="col">Ações</th>
+                    <th scope="col">Código</th>
+                    <th scope="col">Nome</th>
+                    <th scope="col">Prefêrencia</th>
+                    <th scope="col">Fone</th>
+                    <th scope="col">Cel</th>
+                    <th scope="col">RG</th>
+                    <th scope="col">CPF</th>
+                    <th scope="col">Data Contrato</th>
+                    <th scope="col">Ações</th>
                 </tr>
                 </thead>
-                <tbody id="tb_listar_imoveis" >       
+                <tbody id="tab_locador" >       
             
                 </tbody>
               </table>     
@@ -85,12 +87,12 @@
 
 
 
-  <!-- modal cadastrar imovel -->   
-<div class="modal fade" id="modal_imoveis" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <!-- modal cadastrar locador -->   
+<div class="modal fade" id="modal_locador" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Cadastro de Imóveis</h5>
+        <h5 class="modal-title" id="exampleModalLabel">Cadastro de Locador</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Fechar">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -98,7 +100,7 @@
       <div class="modal-body">
         <form>
           <div class="form-group">
-            <label for="recipient-name" class="col-form-label">Descrição do imóvel:</label>
+            <label for="recipient-name" class="col-form-label">Nome:</label>
             <input type="text" class="form-control" id="imovel_descr">
           </div>
           
