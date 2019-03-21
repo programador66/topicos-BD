@@ -23,25 +23,25 @@ class Cad_locador_model extends Conexao
         return $this->retorno;
     }
 
-    public function cadastrarImovel($desc)
+    public function cadastrarLocador($nome, $preferencia, $fone, $celular, $rg, $cpf, $data)
     {
 
-        // $this->query = "insert into cad_imovel (descr)  values ('{$desc}')";
+        $this->query = "insert into cad_locador (nome,preferencia,fone,cel,rg,cpf,data_cont)  values ('{$nome}', '{$preferencia}','{$fone}','{$celular}','{$rg}','{$cpf}','{$data}')";
+        // print_r($this->query);exit();
+        $stmt = $this->pdo->prepare($this->query);
+        $this->retorno = $stmt->execute();
 
-        // $stmt = $this->pdo->prepare($this->query);
-        // $this->retorno = $stmt->execute();
-
-        // return $this->retorno;
+        return $this->retorno;
     }
 
-    public function excluir($id_imovel)
+    public function excluir($cod_locador)
     {
-        // $this->query = "delete from cad_imovel where cod_imo = {$id_imovel}";
+        $this->query = "delete from cad_locador where codloc = {$cod_locador}";
 
-        // $stmt = $this->pdo->prepare($this->query);
-        // $this->retorno = $stmt->execute();
+        $stmt = $this->pdo->prepare($this->query);
+        $this->retorno = $stmt->execute();
 
-        // return $this->retorno;
+        return $this->retorno;
     }
 
     public function editar($id_imovel, $descr)

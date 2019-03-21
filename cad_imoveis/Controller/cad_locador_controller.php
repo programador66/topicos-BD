@@ -11,43 +11,48 @@ if ($funcao == 'listar') {
 
     echo json_encode($listagem);
 
+} else if ($funcao == 'cadastrar') {
+
+    $nome = $_POST['nome'];
+    $preferencia = $_POST['preferencia'];
+    $fone = $_POST['fone'];
+    $celular = $_POST['celular'];
+    $rg = $_POST['rg'];
+    $cpf = $_POST['cpf'];
+    $data = $_POST['data'];
+
+    $locador = new cad_locador_model();
+    $cadastro = $locador->cadastrarLocador($nome, $preferencia, $fone, $celular, $rg, $cpf, $data);
+
+    if ($cadastro) {
+        $retorno = array("codigo" => 1, "msg" => "cadastrado com sucesso!");
+        echo json_encode($retorno);
+
+    } else {
+
+        $retorno = array("codigo" => 0, "msg" => "erro ao cadastrar!");
+        echo json_encode($retorno);
+
+    }
+} else if ($funcao == 'excluir') {
+
+    $cod_locador = $_POST['codigo_locador'];
+
+    $locador = new cad_locador_model();
+    $excluir = $locador->excluir($cod_locador);
+
+    if ($excluir) {
+        $retorno = array("codigo" => 1, "msg" => "Excluido com sucesso!");
+        echo json_encode($retorno);
+
+    } else {
+
+        $retorno = array("codigo" => 0, "msg" => "erro ao Excluir!");
+        echo json_encode($retorno);
+
+    }
 }
-//else if ($funcao == 'cadastrar') {
-
-//     $cod_imovel = $_POST['codigo_imovel'];
-//     $descr_imovel = $_POST['descricao'];
-
-//     $imovel = new cad_imovel_model();
-//     $cadastro = $imovel->cadastrarImovel($descr_imovel);
-
-//     if ($cadastro) {
-//         $retorno = array("codigo" => 1, "msg" => "cadastrado com sucesso!");
-//         echo json_encode($retorno);
-
-//     } else {
-
-//         $retorno = array("codigo" => 0, "msg" => "erro ao cadastrar!");
-//         echo json_encode($retorno);
-
-//     }
-// } else if ($funcao == 'excluir') {
-
-//     $cod_imovel = $_POST['codigo_imovel'];
-
-//     $imovel = new cad_imovel_model();
-//     $cadastro = $imovel->excluir($cod_imovel);
-
-//     if ($cadastro) {
-//         $retorno = array("codigo" => 1, "msg" => "Excluido com sucesso!");
-//         echo json_encode($retorno);
-
-//     } else {
-
-//         $retorno = array("codigo" => 0, "msg" => "erro ao Excluir!");
-//         echo json_encode($retorno);
-
-//     }
-// } else if ($funcao == 'editar') {
+// else if ($funcao == 'editar') {
 
 //     $cod_imovel = $_POST['codigo_imovel'];
 //     $descr_imovel = $_POST['descricao'];

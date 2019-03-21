@@ -37,7 +37,7 @@
                   <h3 class="jumbotron-heading">Sistema TI</h3>
                 </div>
                 <div class="col-sm-6 text-right position-relative pt-3">
-                  <button class="btn btn-outline-dark"  data-toggle="modal" data-target="#modal_imoveis" data-whatever="@mdo">Novo cadastro</button>
+                  <button class="btn btn-outline-dark"  data-toggle="modal" data-target="#modal_locador" data-whatever="@mdo">Novo cadastro</button>
                 </div>
               </div>
               
@@ -101,14 +101,45 @@
         <form>
           <div class="form-group">
             <label for="recipient-name" class="col-form-label">Nome:</label>
-            <input type="text" class="form-control" id="imovel_descr">
+            <input type="text" class="form-control input-cadastro" id="nome">
           </div>
+
+          <div class="form-group">
+            <label for="recipient-name" class="col-form-label">Preferência:</label>
+            <input type="text" class="form-control input-cadastro" id="preferencia">
+          </div>
+
+          <div class="form-group">
+            <label for="recipient-name" class="col-form-label">Telefone - Residencial:</label>
+            <input type="text" class="form-control input-cadastro" id="fone">
+          </div>
+
+          <div class="form-group">
+            <label for="recipient-name" class="col-form-label">Celular:</label>
+            <input type="text" class="form-control input-cadastro" id="celular">
+          </div>
+
+          <div class="form-group">
+            <label for="recipient-name" class="col-form-label">RG:</label>
+            <input type="text" class="form-control input-cadastro" id="rg">
+          </div>
+
+          <div class="form-group">
+            <label for="recipient-name" class="col-form-label">CPF:</label>
+            <input type="text" class="form-control input-cadastro" id="cpf">
+          </div>
+
+          <div class="form-group">
+            <label for="recipient-name" class="col-form-label">Data do Contrato:</label>
+            <input type="date" class="form-control input-cadastro" id="data_contrato">
+          </div>
+
           
         </form>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
-        <button type="button" class="btn btn-primary" data-dismiss="modal" onclick="cadastrar_imovel();">Enviar</button>
+        <button type="button" class="btn btn-primary" data-dismiss="modal" onclick="cadastrar_locador()">Enviar</button>
       </div>
     </div>
   </div>
@@ -120,39 +151,66 @@
 
 
 
-<!-- modal editar imovel -->   
-<div class="modal fade" id="modal_imoveis_editar" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Atualização de Imóveis</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Fechar">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-        <form>
+  
+  <!-- modal editar locador -->   
+  <div class="modal fade" id="modal_locador_editar" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Atualizar de Locador</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Fechar">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <form>
             <div class="form-group">
-                <label for="recipient-name" class="col-form-label">Codigo:</label>
-                <input type="text" class="form-control" id="imovel_id_editar">
-              </div>
-
-          <div class="form-group">
-            <label for="recipient-name" class="col-form-label">Descrição do imóvel:</label>
-            <input type="text" class="form-control" id="imovel_descr_editar">
-          </div>
-          
-        </form>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
-        <button type="button" class="btn btn-primary" data-dismiss="modal" id="btnatualizar" onclick="atualizar_imoveis()">Atualizar</button>
+              <label for="recipient-name" class="col-form-label">Nome:</label>
+              <input type="text" class="form-control input-cadastro" id="nome_editar">
+            </div>
+  
+            <div class="form-group">
+              <label for="recipient-name" class="col-form-label">Preferência:</label>
+              <input type="text" class="form-control input-cadastro" id="preferencia_editar">
+            </div>
+  
+            <div class="form-group">
+              <label for="recipient-name" class="col-form-label">Telefone - Residencial:</label>
+              <input type="text" class="form-control input-cadastro" id="fone_editar">
+            </div>
+  
+            <div class="form-group">
+              <label for="recipient-name" class="col-form-label">Celular:</label>
+              <input type="text" class="form-control input-cadastro" id="celular_editar">
+            </div>
+  
+            <div class="form-group">
+              <label for="recipient-name" class="col-form-label">RG:</label>
+              <input type="text" class="form-control input-cadastro" id="rg_editar">
+            </div>
+  
+            <div class="form-group">
+              <label for="recipient-name" class="col-form-label">CPF:</label>
+              <input type="text" class="form-control input-cadastro" id="cpf_editar">
+            </div>
+  
+            <div class="form-group">
+              <label for="recipient-name" class="col-form-label">Data do Contrato:</label>
+              <input type="date" class="form-control input-cadastro" id="data_contrato_editar">
+            </div>
+  
+            
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
+          <button type="button" class="btn btn-primary" data-dismiss="modal" onclick="atualizar_locador()">Enviar</button>
+        </div>
       </div>
     </div>
-  </div>
-</div>                
+  </div> 
 
- <!-- fim modal editar imovel -->   
+ <!-- fim modal editar locador -->   
 
 
 
