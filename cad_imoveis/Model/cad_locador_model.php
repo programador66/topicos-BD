@@ -44,13 +44,15 @@ class Cad_locador_model extends Conexao
         return $this->retorno;
     }
 
-    public function editar($id_imovel, $descr)
+    public function editar($codigo, $nome, $preferencia, $fone, $celular, $rg, $cpf, $data)
     {
-        // $this->query = "update cad_imovel set descr = '{$descr}' where cod_imo = {$id_imovel}";
-        // $stmt = $this->pdo->prepare($this->query);
-        // $this->retorno = $stmt->execute();
+        $this->query = "update cad_locador set nome = '{$nome}',preferencia = '{$preferencia}',
+                        fone = '{$fone}',cel = '{$celular}',rg = '{$rg}',cpf = '{$cpf}',data_cont = '{$data}' where codloc = {$codigo}";
 
-        // return $this->retorno;
+        $stmt = $this->pdo->prepare($this->query);
+        $this->retorno = $stmt->execute();
+
+        return $this->retorno;
     }
 
 }

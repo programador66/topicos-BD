@@ -172,6 +172,7 @@ function addFormAtualizar(
   data
 ) {
   console.log(codloc, nome);
+  $("#codloc_editar").val(codloc);
   $("#nome_editar").val(nome);
   $("#preferencia_editar").val(preferencia);
   $("#fone_editar").val(fone);
@@ -181,38 +182,37 @@ function addFormAtualizar(
   $("#data_contrato_editar").val(data);
 }
 
-// function atualizar_imoveis() {
-//   var codigo_imovel = $("#imovel_id_editar").val();
-//   var descricao = $("#imovel_descr_editar").val();
+function atualizar_locador() {
+  dados = {
+    codigo: $("#codloc_editar").val(),
+    nome: $("#nome_editar").val(),
+    preferencia: $("#preferencia_editar").val(),
+    fone: $("#fone_editar").val(),
+    celular: $("#celular_editar").val(),
+    rg: $("#rg_editar").val(),
+    cpf: $("#cpf_editar").val(),
+    data: $("#data_contrato_editar").val()
+  };
 
-//   dados = {
-//     descricao: descricao,
-//     codigo_imovel: codigo_imovel
-//   };
+  $.post(url + "funcao=atualizar", dados, function(data) {
+    data = JSON.parse(data);
+    console.log(data);
 
-//   $.post(url + "funcao=editar", dados, function(data) {
-//     data = JSON.parse(data);
-//     console.log(data);
-
-//     if (data.codigo == 1) {
-//       console.log("sucesso");
-//       $("#msg-sucesso").text(data.msg);
-//       $("#alertaSucesso ")
-//         .show()
-//         .delay(2000)
-//         .fadeOut();
-//     } else {
-//       console.log("erro");
-//       $("#msg-erro").text(data.msg);
-//       $("#alertaDanger ")
-//         .show()
-//         .delay(2000)
-//         .fadeOut();
-//     }
-//   });
-
-//   setTimeout(function() {
-//     $("#tb_listar_imoveis").load(" #tb_listar_imoveis"); //parte da mesma página
-//     location.reload(1000);
-//   }, 2500);
-// }
+    if (data.codigo == 1) {
+      console.log("sucesso");
+      listar_locador();
+      $("#msg-sucesso").text(data.msg);
+      $("#alertaSucesso ")
+        .show()
+        .delay(2000)
+        .fadeOut();
+    } else {
+      console.log("erro");
+      $("#msg-erro").text(data.msg);
+      $("#alertaDanger ")
+        .show()
+        .delay(2000)
+        .fadeOut();
+    }
+  });
+}

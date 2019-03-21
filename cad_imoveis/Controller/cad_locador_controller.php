@@ -51,27 +51,32 @@ if ($funcao == 'listar') {
         echo json_encode($retorno);
 
     }
+} else if ($funcao == 'atualizar') {
+
+    $codigo = $_POST['codigo'];
+    $nome = $_POST['nome'];
+    $preferencia = $_POST['preferencia'];
+    $fone = $_POST['fone'];
+    $celular = $_POST['celular'];
+    $rg = $_POST['rg'];
+    $cpf = $_POST['cpf'];
+    $data = $_POST['data'];
+
+    $locador = new cad_locador_model();
+    $atualizar = $locador->editar($codigo, $nome, $preferencia, $fone, $celular, $rg, $cpf, $data);
+
+    if ($atualizar) {
+        $retorno = array("codigo" => 1, "msg" => "Atualizado com sucesso!");
+        echo json_encode($retorno);
+
+    } else {
+
+        $retorno = array("codigo" => 0, "msg" => "erro ao Atualizar os dados!");
+        echo json_encode($retorno);
+
+    }
+
+} else {
+    $retorno = array("codigo" => 0, "msg" => "Erro contato o ADM!");
+    echo json_encode($retorno);
 }
-// else if ($funcao == 'editar') {
-
-//     $cod_imovel = $_POST['codigo_imovel'];
-//     $descr_imovel = $_POST['descricao'];
-
-//     $imovel = new cad_imovel_model();
-//     $atualizar = $imovel->editar($cod_imovel, $descr_imovel);
-
-//     if ($atualizar) {
-//         $retorno = array("codigo" => 1, "msg" => "Atualizado com sucesso!");
-//         echo json_encode($retorno);
-
-//     } else {
-
-//         $retorno = array("codigo" => 0, "msg" => "erro ao Atualizar os dados!");
-//         echo json_encode($retorno);
-
-//     }
-
-// } else {
-//     $retorno = array("codigo" => 0, "msg" => "Erro contato o ADM!");
-//     echo json_encode($retorno);
-// }
