@@ -10,6 +10,13 @@ $(document).ready(function() {
   $(".alert ").hide();
   listar_locador();
   $("#cpf").mask("000.000.000-00");
+  $("#celular").mask("(00) 0000-0000");
+  $("#fone").mask("(00) 0000-0000");
+  $("#rg").mask("0000000-0");
+  $("#cpf_editar").mask("000.000.000-00");
+  $("#celular_editar").mask("(00) 0000-0000");
+  $("#fone_editar").mask("(00) 0000-0000");
+  $("#rg_editar").mask("0000000-0");
 });
 
 function limparModal() {
