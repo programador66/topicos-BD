@@ -6,14 +6,52 @@
 var url =
   "http://localhost:8080/topicos-BD/cad_imoveis/Controller/locacao_controller.php?";
 
+var urlCombox = "http://localhost:8080/topicos-BD/cad_imoveis/Controller/";
+
 $(document).ready(function() {
   $(".alert ").hide();
   listar_alugueis();
+  listarComboImovel();
+  listarComboLocador();
 });
 
 function limparModal() {
   $(".input-cadastro").each(function(index) {
     $(this).val("");
+  });
+}
+
+function listarComboImovel() {
+  $.getJSON(urlCombox + "cad_imovel_controller.php?funcao=listar", function(
+    data
+  ) {
+    $.each(data, function(i) {
+      $("#imovel").append(
+        "<option value=" +
+          data[i]["cod_imo"] +
+          ">" +
+          data[i]["descr"] +
+          "</option>"
+      );
+    });
+  });
+}
+
+function listarComboLocador() {
+  $.getJSON(urlCombox + "cad_locador_controller.php?funcao=listar", function(
+    data
+  ) {
+    console.log(data);
+
+    $.each(data, function(i) {
+      $("#cliente").append(
+        "<option value=" +
+          data[i]["codloc"] +
+          ">" +
+          data[i]["nome"] +
+          "</option>"
+      );
+    });
   });
 }
 
@@ -30,10 +68,10 @@ function listar_alugueis() {
           data[i]["cod_loca"] +
           ` </td>
             <td> ` +
-          data[i]["codimo_loca"] +
+          data[i]["descr"] +
           ` </td>
           <td> ` +
-          data[i]["codloc_loca"] +
+          data[i]["nome"] +
           ` </td>
           <td> ` +
           data[i]["valor"] +
@@ -72,39 +110,34 @@ function listar_alugueis() {
 //   window.location.href = "http://pt.stackoverflow.com";
 // }
 
-// function cadastrar_imovel() {
-//   var descricao = $("#imovel_descr").val();
+function cadastrar_locacao() {
+  var dados = $("#form_locacao").serialize();
 
-//   console.log(descricao + " e " + codigo_imovel);
-//   dados = {
-//     descricao: descricao,
-//     codigo_imovel: codigo_imovel
-//   };
-//   $.post(url + "funcao=cadastrar", dados, function(data) {
-//     data = JSON.parse(data);
-//     console.log(data);
+  $.post(url + "funcao=cadastrar", dados, function(data) {
+    data = JSON.parse(data);
+    console.log(data);
 
-//     if (data.codigo == 1) {
-//       console.log("sucesso");
+    if (data.codigo == 1) {
+      console.log("sucesso");
 
-//       listar_imoveis();
+      listar_alugueis();
 
-//       $("#msg-sucesso").text(data.msg);
-//       $("#alertaSucesso ")
-//         .show()
-//         .delay(2000)
-//         .fadeOut();
-//     } else {
-//       console.log("erro");
+      $("#msg-sucesso").text(data.msg);
+      $("#alertaSucesso ")
+        .show()
+        .delay(2000)
+        .fadeOut();
+    } else {
+      console.log("erro");
 
-//       $("#msg-erro").text(data.msg);
-//       $("#alertaDanger ")
-//         .show()
-//         .delay(2000)
-//         .fadeOut();
-//     }
-//   });
-// }
+      $("#msg-erro").text(data.msg);
+      $("#alertaDanger ")
+        .show()
+        .delay(2000)
+        .fadeOut();
+    }
+  });
+}
 
 // function deletar_imovel(codigo_imovel) {
 //   // var cod_imovel = ();

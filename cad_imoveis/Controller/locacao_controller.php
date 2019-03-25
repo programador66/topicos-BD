@@ -12,16 +12,16 @@ if ($funcao == 'listar') {
     echo json_encode($listagem);
 
 } else if ($funcao == 'cadastrar') {
-
-//    $cod_loca = $_POST['cod_loca'];
-    //    $cod_loca = $_POST['cod_loca'];
-    //    $cod_loca = $_POST['cod_loca'];
-    //    $cod_loca = $_POST['cod_loca'];
-    //    $cod_loca = $_POST['cod_loca'];
-    //    $cod_loca = $_POST['cod_loca'];
+    // print_r($_REQUEST);exit();
+    $imovel = $_POST['imovel'];
+    $cliente = $_POST['cliente'];
+    $valor = $_POST['valor'];
+    $valor_ext = $_POST['valor_ext'];
+    $dt_loca = $_POST['dt_loca'];
+    $situacao = $_POST['situacao'];
 
     $locacao = new locacao_model();
-    $cadastro = $locacao->cadastrarImovel($imovel, $cliente, $valor, $valor_ext, $dt_loca, $situacao);
+    $cadastro = $locacao->cadastrarLocacao($imovel, $cliente, $valor, $valor_ext, $dt_loca, $situacao);
 
     if ($cadastro) {
         $retorno = array("codigo" => 1, "msg" => "cadastrado com sucesso!");
