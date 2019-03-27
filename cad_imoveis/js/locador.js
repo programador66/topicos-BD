@@ -17,6 +17,9 @@ $(document).ready(function() {
   $("#celular_editar").mask("(00) 0000-0000");
   $("#fone_editar").mask("(00) 0000-0000");
   $("#rg_editar").mask("0000000-0");
+
+  // $("#header").load("navBar.html");
+  // $("#inicio").addClass("active");
 });
 
 function limparModal() {

@@ -23,6 +23,18 @@ class Cad_locador_model extends Conexao
         return $this->retorno;
     }
 
+    public function listarLocadorAlugueis()
+    {
+
+        $this->query = ' select * from cad_locador where codloc not in(select codloc_loca from cad_locacao )';
+
+        $stmt = $this->pdo->prepare($this->query);
+        $stmt->execute();
+        $this->retorno = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+        return $this->retorno;
+    }
+
     public function cadastrarLocador($nome, $preferencia, $fone, $celular, $rg, $cpf, $data)
     {
 

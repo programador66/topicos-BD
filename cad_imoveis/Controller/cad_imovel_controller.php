@@ -65,6 +65,14 @@ if ($funcao == 'listar') {
 
     }
 
+} else if ($funcao == 'listarImoveisAlugueis') {
+
+    $conexao = new cad_imovel_model();
+
+    $listagem = $conexao->listarImovelAlugueis();
+
+    echo json_encode($listagem);
+
 } else {
     $retorno = array("codigo" => 0, "msg" => "Erro contato o ADM!");
     echo json_encode($retorno);

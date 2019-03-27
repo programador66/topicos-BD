@@ -22,37 +22,39 @@ function limparModal() {
 }
 
 function listarComboImovel() {
-  $.getJSON(urlCombox + "cad_imovel_controller.php?funcao=listar", function(
-    data
-  ) {
-    $.each(data, function(i) {
-      $("#imovel").append(
-        "<option value=" +
-          data[i]["cod_imo"] +
-          ">" +
-          data[i]["descr"] +
-          "</option>"
-      );
-    });
-  });
+  $.getJSON(
+    urlCombox + "cad_imovel_controller.php?funcao=listarImoveisAlugueis",
+    function(data) {
+      $.each(data, function(i) {
+        $("#imovel").append(
+          "<option value=" +
+            data[i]["cod_imo"] +
+            ">" +
+            data[i]["descr"] +
+            "</option>"
+        );
+      });
+    }
+  );
 }
 
 function listarComboLocador() {
-  $.getJSON(urlCombox + "cad_locador_controller.php?funcao=listar", function(
-    data
-  ) {
-    console.log(data);
+  $.getJSON(
+    urlCombox + "cad_locador_controller.php?funcao=listarLocadorAlugueis",
+    function(data) {
+      console.log(data);
 
-    $.each(data, function(i) {
-      $("#cliente").append(
-        "<option value=" +
-          data[i]["codloc"] +
-          ">" +
-          data[i]["nome"] +
-          "</option>"
-      );
-    });
-  });
+      $.each(data, function(i) {
+        $("#cliente").append(
+          "<option value=" +
+            data[i]["codloc"] +
+            ">" +
+            data[i]["nome"] +
+            "</option>"
+        );
+      });
+    }
+  );
 }
 
 function listar_alugueis() {

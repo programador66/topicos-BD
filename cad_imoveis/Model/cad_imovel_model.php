@@ -23,6 +23,18 @@ class Cad_imovel_model extends Conexao
         return $this->retorno;
     }
 
+    public function listarImovelAlugueis()
+    {
+
+        $this->query = ' select * from cad_imovel where cod_imo not in(select codimo_loca from cad_locacao )';
+
+        $stmt = $this->pdo->prepare($this->query);
+        $stmt->execute();
+        $this->retorno = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+        return $this->retorno;
+    }
+
     public function cadastrarImovel($desc)
     {
 
