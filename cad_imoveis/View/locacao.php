@@ -9,6 +9,7 @@
     <script type="text/javascript" src="../js/jquery-3.3.1.min.map"></script>
     <script type="text/javascript" src="../js/locacao.js"></script>
     <link rel="stylesheet" type="text/css" href="../js/principal.css">
+    <script type="text/javascript" src="../js/jqmask/src/jquery.mask.js"></script>
     <link rel="stylesheet" href="../js/css/bootstrap.min.css">
 
 

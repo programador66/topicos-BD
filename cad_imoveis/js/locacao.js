@@ -13,6 +13,8 @@ $(document).ready(function() {
   listar_alugueis();
   listarComboImovel();
   listarComboLocador();
+  $("#valor").mask("000.000.000,00", { reverse: true });
+  $("#valor_ext").mask("000.000.000,00", { reverse: true });
 });
 
 function limparModal() {
