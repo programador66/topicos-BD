@@ -1,6 +1,11 @@
 <?php
 require_once "../Model/locacao_model.php";
 
+function data($data)
+{
+    return date("Y/m/d", strtotime($data));
+}
+
 $funcao = $_REQUEST['funcao'];
 
 if ($funcao == 'listar') {
@@ -15,7 +20,7 @@ if ($funcao == 'listar') {
     // print_r($_REQUEST);exit();
     $imovel = $_POST['imovel'];
     $cliente = $_POST['cliente'];
-    $valor = $_POST['valor'];
+    $valor = floatval($_POST['valor']);
     $valor_ext = $_POST['valor_ext'];
     $dt_loca = $_POST['dt_loca'];
     $situacao = $_POST['situacao'];
