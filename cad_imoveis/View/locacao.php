@@ -100,7 +100,7 @@ echo "<script>$('#alugueis').addClass('active')</script>";
                     <form id="form_locacao">
                         <div class="form-group">
                             <label for="exampleFormControlSelect1">Imóvel</label>
-                            <select class="form-control" id="imovel" name="imovel">
+                            <select class="form-control" id="imovel" name="imovel" required>
                                 <option>SELECIONE</option>
 
                             </select>
@@ -116,22 +116,25 @@ echo "<script>$('#alugueis').addClass('active')</script>";
 
                         <div class="form-group">
                             <label for="recipient-name" class="col-form-label .input-cadastro">Valor:</label>
-                            <input type="text" class="form-control input-cadastro" id="valor" name="valor">
+                            <input type="text" class="form-control input-cadastro" id="valor" name="valor" required>
                         </div>
 
                         <div class="form-group">
                             <label for="recipient-name" class="col-form-label .input-cadastro">data locação:</label>
-                            <input type="date" class="form-control input-cadastro" id="dt_loca" name="dt_loca">
+                            <input type="date" class="form-control input-cadastro" id="dt_loca" name="dt_loca" required>
                         </div>
 
 
                         <div class="form-group">
-                            <label for="recipient-name" class="col-form-label .input-cadastro">Valor Extadia:</label>
-                            <input type="text" class="form-control input-cadastro" id="valor_ext" name="valor_ext">
+                            <label for="recipient-name" class="col-form-label .input-cadastro">Valor por
+                                Extenso:</label>
+                            <input type="text" class="form-control input-cadastro" id="valor_ext" name="valor_ext"
+                                required>
                         </div>
                         <div class="form-group">
                             <label for="recipient-name" class="col-form-label .input-cadastro">Situação:</label>
-                            <input type="text" class="form-control input-cadastro" id="situacao" name="situacao">
+                            <input type="text" class="form-control input-cadastro" id="situacao" name="situacao"
+                                required>
                         </div>
 
 

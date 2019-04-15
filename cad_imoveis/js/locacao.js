@@ -14,7 +14,6 @@ $(document).ready(function() {
   listarComboImovel();
   listarComboLocador();
   $("#valor").mask("000.000.000,00", { reverse: true });
-  $("#valor_ext").mask("000.000.000,00", { reverse: true });
 });
 
 function limparModal() {
@@ -94,13 +93,13 @@ function listar_alugueis() {
           addFormAtualizar('` +
           data[i]["descr"] +
           `',` +
-          data[i]["cod_imo"] +
+          data[i]["cod_loca"] +
           `)" 
           >
                 Editar
             </button>
-            <button class="btn btn-outline-dark"    onclick=deletar_imovel(` +
-          data[i]["cod_imo"] +
+            <button class="btn btn-outline-dark"    onclick=deletar_locacao(` +
+          data[i]["cod_loca"] +
           `)>
                 Excluir
             </button>
@@ -143,35 +142,36 @@ function cadastrar_locacao() {
   });
 }
 
-// function deletar_imovel(codigo_imovel) {
-//   // var cod_imovel = ();
+function deletar_locacao(codigo_locacao) {
+  console.log(codigo_locacao);
 
-//   var dados = {
-//     codigo_imovel: codigo_imovel
-//   };
-//   $.post(url + "funcao=excluir", dados, function(data) {
-//     data = JSON.parse(data);
-//     console.log(data);
+  var dados = {
+    codigo_locacao: codigo_locacao
+  };
+  $.post(url + "funcao=excluir", dados, function(data) {
+    data = JSON.parse(data);
+    console.log(data);
 
-//     if (data.codigo == 1) {
-//       console.log("sucesso");
-//       listar_imoveis();
-//       $("#msg-sucesso").text(data.msg);
-//       $("#alertaSucesso ")
-//         .show()
-//         .delay(2000)
-//         .fadeOut();
-//     } else {
-//       console.log("erro");
-//       listar_imoveis();
-//       $("#msg-erro").text(data.msg);
-//       $("#alertaDanger ")
-//         .show()
-//         .delay(2000)
-//         .fadeOut();
-//     }
-//   });
-// }
+    if (data.codigo == 1) {
+      console.log("sucesso");
+      listar_alugueis();
+
+      $("#msg-sucesso").text(data.msg);
+      $("#alertaSucesso ")
+        .show()
+        .delay(2000)
+        .fadeOut();
+    } else {
+      console.log("erro");
+      listar_alugueis();
+      $("#msg-erro").text(data.msg);
+      $("#alertaDanger ")
+        .show()
+        .delay(2000)
+        .fadeOut();
+    }
+  });
+}
 
 // function addFormAtualizar(descr, cod_imo) {
 //   console.log(descr, cod_imo);

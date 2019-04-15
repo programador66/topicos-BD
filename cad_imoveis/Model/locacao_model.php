@@ -41,4 +41,14 @@ class Locacao_model extends Conexao
         return $this->retorno;
     }
 
+    public function excluir($cod_locacao)
+    {
+
+        $this->query = "delete from cad_locacao where cod_loca = {$cod_locacao} ";
+        $stmt = $this->pdo->prepare($this->query);
+        $this->retorno = $stmt->execute();
+
+        return $this->retorno;
+    }
+
 }

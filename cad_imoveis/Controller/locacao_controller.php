@@ -20,7 +20,7 @@ if ($funcao == 'listar') {
     // print_r($_REQUEST);exit();
     $imovel = $_POST['imovel'];
     $cliente = $_POST['cliente'];
-    $valor = floatval($_POST['valor']);
+    $valor = str_replace(',', '.', str_replace('.', '', $_POST['valor']));
     $valor_ext = $_POST['valor_ext'];
     $dt_loca = $_POST['dt_loca'];
     $situacao = $_POST['situacao'];
@@ -38,25 +38,25 @@ if ($funcao == 'listar') {
         echo json_encode($retorno);
 
     }
+} else if ($funcao == 'excluir') {
+    // print_r($_REQUEST);exit();
+    $cod_locacao = $_POST['codigo_locacao'];
+
+    $locacao = new locacao_model();
+    $exclusao = $locacao->excluir($cod_locacao);
+
+    if ($exclusao) {
+        $retorno = array("codigo" => 1, "msg" => "Excluido com sucesso!");
+        echo json_encode($retorno);
+
+    } else {
+
+        $retorno = array("codigo" => 0, "msg" => "erro ao Excluir!");
+        echo json_encode($retorno);
+
+    }
 }
-//  else if ($funcao == 'excluir') {
-
-//     $cod_imovel = $_POST['codigo_imovel'];
-
-//     $imovel = new cad_imovel_model();
-//     $cadastro = $imovel->excluir($cod_imovel);
-
-//     if ($cadastro) {
-//         $retorno = array("codigo" => 1, "msg" => "Excluido com sucesso!");
-//         echo json_encode($retorno);
-
-//     } else {
-
-//         $retorno = array("codigo" => 0, "msg" => "erro ao Excluir!");
-//         echo json_encode($retorno);
-
-//     }
-// } else if ($funcao == 'editar') {
+//else if ($funcao == 'editar') {
 
 //     $cod_imovel = $_POST['codigo_imovel'];
 //     $descr_imovel = $_POST['descricao'];
