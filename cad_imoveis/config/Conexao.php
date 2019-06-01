@@ -18,7 +18,7 @@ class Conexao
         $this->porta = '3308';
         $this->banco = 'sis_alugueis';
         $this->usuario = 'root';
-        $this->senha = '123456';
+        $this->senha = '';
         $this->conecta();
     }
     // Connecting, selecting database

@@ -3,10 +3,10 @@
  * data: 16/03/2019
  */
 
-var url =
-  "http://localhost:8080/topicos-BD/cad_imoveis/Controller/locacao_controller.php?";
-
+var url ="http://localhost:8080/topicos-BD/cad_imoveis/Controller/locacao_controller.php?";
+var url_pgto = "http://localhost:8080/topicos-BD/cad_imoveis/Controller/pagamentos_controller.php?";
 var urlCombox = "http://localhost:8080/topicos-BD/cad_imoveis/Controller/";
+var dadosAlugueis = {};
 
 $(document).ready(function() {
   $(".alert ").hide();
@@ -62,9 +62,10 @@ function listar_alugueis() {
   limparModal();
   $("#tb_listar_alugueis").html(" ");
   $.getJSON(url + "funcao=listar", function(data) {
-    console.log(data);
+    dadosAlugueis = data;
 
     $.each(data, function(i) {
+     
       $("#tb_listar_alugueis").append(
         `<tr>
             <td>` +
@@ -82,36 +83,93 @@ function listar_alugueis() {
           <td> ` +
           data[i]["valor_ext"] +
           ` </td>
-          <td> ` +
+          <td><p id="dt_inicio`+[i]+`"> ` +
           data[i]["dt_loca"] +
-          ` </td>
+          ` </p></td>
           <td> ` +
           data[i]["situacao"] +
           ` </td>
-            <td class="buttons-actions">
-            <button class="btn btn-outline-dark"  data-toggle="modal" data-target="#modal_imoveis_editar" data-whatever="@mdo" onclick="
-          addFormAtualizar('` +
-          data[i]["descr"] +
-          `',` +
-          data[i]["cod_loca"] +
-          `)" 
-          >
-                Editar
-            </button>
-            <button class="btn btn-outline-dark"    onclick=deletar_locacao(` +
-          data[i]["cod_loca"] +
-          `)>
-                Excluir
-            </button>
+            <td class="buttons-actions" style="text-align:center">
+            <button class="btn btn-outline-dark"   onclick="pagamentos(`+[i]+`)">Confirmar Pgt </button> 
             </td></tr>`
       );
     });
   });
 }
 
-// function teste() {
-//   window.location.href = "http://pt.stackoverflow.com";
-// }
+function getRandom() {
+  return Math.floor(Math.random() * 9999998 + 1)
+}
+function pagamentos(cod_loca) {
+ 
+  let dt_string = dadosAlugueis[cod_loca]['dt_loca'];
+  let dt_separada = dt_string.split("-");
+  let ano =  parseInt(dt_separada[0],10);
+  let mes = parseInt(dt_separada[1],10)+1;
+  let dia =  parseInt(dt_separada[2],10);
+  
+    let cad_pgto = {
+                      'cod_loca':dadosAlugueis[cod_loca]['cod_loca'],
+                      'numRecibo':getRandom(),
+                      'dt_loca':dadosAlugueis[cod_loca]['dt_loca'],// ultilizando variavel globar para resgatar dados
+                      'dt_inicio': dadosAlugueis[cod_loca]['dt_loca'],
+                      'dia':dia,
+                      'mes':mes,
+                      'ano':ano  
+                    };
+              
+  $.post(url_pgto + "funcao=inserir",cad_pgto,function(data){
+      data = JSON.parse(data);
+      if (data.codigo==1){
+        console.log('cadastrado');
+        $("#locacao_body").load("http://localhost:8080/topicos-BD/cad_imoveis/View/pagamentos");
+          confirmaPagamento(cod_loca);
+       
+      }else{
+        console.log('erro ao cadastrar');
+      }
+  });
+  
+}
+
+function confirmaPagamento(cod_loca){
+  var cod_loc = dadosAlugueis[cod_loca]['cod_loca']
+  $.getJSON(url_pgto + "funcao=listarPagamentoPorId&cod_loca="+cod_loc, function(data){
+      
+      console.log(dadosAlugueis);
+      console.log(data);
+      $("#cod_pagamento").val(data[0]['codpg']);
+      $("#cod_locacao").val(data[0]['codloca']);
+      $("#dt_pgto").val(data[0]['data_pg']);
+      $("#dt_inicio").val(data[0]['dt_inicio']);
+      $("#dt_vence").val(data[0]['dt_vence']);
+      $("#recibo").val(data[0]['num_rec']);
+      $("#nome").val(dadosAlugueis[cod_loca]['nome']);
+  });
+}
+
+ function atualizarPgto(){
+  alert("alou");
+  var pagamento = {
+                'cod_loca':$("#cod_locacao").val(),
+                'numRecibo':$("#recibo").val(),
+                'dt_loca': $("#dt_pgto").val(),
+                'dt_inicio':$("#dt_inicio").val(),
+                'dt_vence':$("#dt_vence").val(),
+                'nome': $("#nome").val()
+                  }
+
+  $.post(url_pgto + "funcao=atualizar",pagamento,function(data){
+    data = JSON.parse(data);
+    if (data.codigo==1){
+     
+      console.log('atualizado');
+    }else{
+      console.log('nao atualizado');
+    }
+  }); 
+
+}
 
 function cadastrar_locacao() {
   var dados = $("#form_locacao").serialize();

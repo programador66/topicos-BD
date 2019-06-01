@@ -86,7 +86,7 @@ function listar_locador() {
           >
                 Editar
             </button>
-            <button class="btn btn-outline-dark"    onclick=deletar_locador(` +
+            <button class="btn btn-outline-dark"  onclick=deletar_locador(` +
           data[i]["codloc"] +
           `)>
                 Excluir

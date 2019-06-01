@@ -16,13 +16,13 @@
 
 </head>
 
-<body>
+<body id="locacao_body">
 
     <div id="header"></div>
     <?php
-require_once "navBar.php";
-echo "<script>$('#alugueis').addClass('active')</script>";
-?>
+        require_once "navBar.php";
+        echo "<script>$('#alugueis').addClass('active')</script>";
+    ?>
 
 
 
@@ -70,7 +70,7 @@ echo "<script>$('#alugueis').addClass('active')</script>";
                     <th scope="col">Valor Ext</th>
                     <th scope="col">Data Locação</th>
                     <th scope="col">Situação</th>
-                    <th scope="col">Ações</th>
+                    <th scope="col" style="text-align:center">Ações</th>
                 </tr>
             </thead>
             <tbody id="tb_listar_alugueis" style="overflow:scroll" style="height:100px;">
@@ -133,8 +133,11 @@ echo "<script>$('#alugueis').addClass('active')</script>";
                         </div>
                         <div class="form-group">
                             <label for="recipient-name" class="col-form-label .input-cadastro">Situação:</label>
-                            <input type="text" class="form-control input-cadastro" id="situacao" name="situacao"
-                                required>
+                            <select class="custom-select" id="situacao" name="situacao">
+                                <option selected>escolha..</option>
+                                <option value="locado">locado</option>
+                                <option value="encerrado">encerrado</option>
+                            </select>
                         </div>
 
 
