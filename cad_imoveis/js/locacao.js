@@ -112,7 +112,8 @@ function getRandom() {
   return Math.floor(Math.random() * 9999998 + 1)
 }
 function pagamentos(cod_loca) {
- 
+ console.log(cod_loca);
+ $("#btn-confirmar").show();
   let dt_string = dadosAlugueis[cod_loca]['dt_loca'];
   let dt_separada = dt_string.split("-");
   let ano =  parseInt(dt_separada[0],10);
@@ -136,7 +137,7 @@ function pagamentos(cod_loca) {
      
         $("#locacao_body").load("http://localhost:8080/topicos-BD/cad_imoveis/View/pagamentos");
           confirmaPagamento(cod_loca);
-       
+        
       }else{
         console.log('erro ao cadastrar');
       }
@@ -161,7 +162,7 @@ function confirmaPagamento(cod_loca){
 }
 
  function atualizarPgto(){
-
+ 
   var pagamento = {
                 'cod_loca':$("#cod_locacao").val(),
                 'numRecibo':$("#recibo").val(),
@@ -179,6 +180,7 @@ function confirmaPagamento(cod_loca){
         $("#modal_resposta_pgto").modal('show');
         $("#msg-pgto").text(data.msg);
         $("#msg-pergunta").text("Tente novamente! ");
+        
       }
   }); 
 
@@ -197,9 +199,11 @@ function geraPdf(){
     $("#dt_vence").val("");
     $("#recibo").val("");
     $("#nome").val("");
+    $("#btn-confirmar").hide();
 }
 
 function funcaoAtualizarSituacao(){
+  
   var codpg = $("#cod_locacao").val();
   var situacao = {
                   'codpg':codpg,
@@ -208,7 +212,8 @@ function funcaoAtualizarSituacao(){
 
   $.post(url + "funcao=atualizarSituacao",situacao,function(data){
     data = JSON.parse(data);
-        if (data.codigo==1){  
+        if (data.codigo==1){
+           
           $("#modal_resposta_pgto").modal('show');
           $("#msg-pgto").text(data.msg);
           $("#msg-pergunta").text("Deseja gerar o recibo? "); 
@@ -217,6 +222,7 @@ function funcaoAtualizarSituacao(){
           $("#modal_resposta_pgto").modal('show');
           $("#msg-pgto").text(data.msg);
           $("#msg-pergunta").text("Tente novamente! ");
+         
         }
 
   });

@@ -74,7 +74,7 @@
                     </div>
                 </div>
                 </form>
-        <button type="submit" class="btn btn-outline-dark" onclick="atualizarPgto()">Confirmar</button>
+        <button type="submit" class="btn btn-outline-dark" id="btn-confirmar" onclick="atualizarPgto()">Confirmar</button>
           
     </div>
         
@@ -96,7 +96,7 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" onclick="atualizaPagina()">Fechar</button>
-                    <button type="button" class="btn btn-primary" data-dismiss="modal"
+                    <button type="button" class="btn btn-primary" id="btn-geraPdf" data-dismiss="modal"
                         onclick="geraPdf()">Gerar</button>
                 </div>
             </div>
