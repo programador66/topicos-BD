@@ -57,13 +57,14 @@ class Pagamentos_model extends Conexao
     //     return $this->retorno;
     // }
 
-    // public function editar($id_imovel, $descr)
-    // {
-    //     $this->query = "update cad_imovel set descr = '{$descr}' where cod_imo = {$id_imovel}";
-    //     $stmt = $this->pdo->prepare($this->query);
-    //     $this->retorno = $stmt->execute();
+    public function atualizarPagamento($codloca_pg,$data_pg,$num_rec,$dt_inicio,$dt_venc)
+    {
+        $this->query = "update cad_pgto set data_pg = '{$data_pg}', num_rec = {$num_rec}, 
+                        dt_inicio = '{$dt_inicio}', dt_vence = '{$dt_venc}' where codloca = '{$codloca_pg}'";
+        $stmt = $this->pdo->prepare($this->query);
+        $this->retorno = $stmt->execute();
 
-    //     return $this->retorno;
-    // }
+        return $this->retorno;
+    }
 
 }

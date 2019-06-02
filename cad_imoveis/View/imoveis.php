@@ -41,19 +41,6 @@ echo "<script>$('#imoveis').addClass('active')</script>";
         </section>
     </div>
 
-    <!-- alertas-->
-
-    <div class="container">
-        <div class="alert alert-success " id="alertaSucesso" role="alert">
-            <span id="msg-sucesso">Cadastrado com Sucesso!</span>
-        </div>
-
-        <div class="alert alert-danger " id="alertaDanger" role="alert">
-            <span id="msg-erro">Erro ao cadastrar!</span>
-        </div>
-
-    </div>
-    <!--fim  alertas-->
 
     <!-- tabela -->
     <div class="container">

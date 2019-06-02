@@ -38,6 +38,23 @@ if ($funcao == "inserir"){
 
 } elseif ($funcao == "atualizar"){
 
-    print_r($_REQUEST);
-    exit();
+    $codloca_pg = $_REQUEST['cod_loca'];
+    $num_rec = $_REQUEST['numRecibo'];
+    $data_pg = $_REQUEST['dt_loca'];
+    $dt_inicio = $_REQUEST['dt_inicio'];
+    $dt_venc = $_REQUEST['dt_vence'];
+
+    $pagt = new Pagamentos_model();
+    $response = $pagt->atualizarPagamento($codloca_pg,$data_pg,$num_rec,$dt_inicio,$dt_venc);
+
+    if ($response) {
+        $retorno = array("codigo" => 1, "msg" => "Atualizado com sucesso!");
+        echo json_encode($retorno);
+
+    } else {
+
+        $retorno = array("codigo" => 0, "msg" => "Erro ao atualizar!");
+        echo json_encode($retorno);
+
+    }
 }

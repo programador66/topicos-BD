@@ -25,9 +25,22 @@
             </section>
     </div>
 
+     <!-- alertas-->
+
+     <!-- <div class="container">
+        <div class="alert alert-success " id="alertaSucessoPg" role="alert">
+            <span id="msg-sucessopg">Cadastrado com Sucesso!</span>
+        </div>
+
+        <div class="alert alert-danger " id="alertaDangerPg" role="alert">
+            <span id="msg-erropg">Erro ao cadastrar!</span>
+        </div>
+
+    </div> -->
+    <!--fim  alertas-->
 
     <div class="container">
-            <form>
+           <form>
                 <div class="form-row">
                     <div class="form-group col-md-4">
                         <label for="cod_pagamento">Codigo do Pagamento</label>
@@ -60,11 +73,37 @@
                     <input type="text" class="form-control" id="recibo">
                     </div>
                 </div>
-            
+                </form>
         <button type="submit" class="btn btn-outline-dark" onclick="atualizarPgto()">Confirmar</button>
-        </form>
+          
+    </div>
+        <img src="../img/locado.png"  alt=""><img>
+     <!-- modal cadastrar imovel -->
+     <div class="modal fade" id="modal_resposta_pgto" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">MSG</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Fechar">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                        <div><div style="text-align:center"><label id="msg-pgto"><label></div>
+                         <div style="text-align:center"><label id="msg-pergunta"></label></div>  
+                         <div> 
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" onclick="atualizaPagina()">Fechar</button>
+                    <button type="button" class="btn btn-primary" data-dismiss="modal"
+                        onclick="">Gerar</button>
+                </div>
+            </div>
+        </div>
     </div>
 
+    <!-- fim modal cadastrar imovel -->
 </body>
 
 </html>

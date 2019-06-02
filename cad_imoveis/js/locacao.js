@@ -10,6 +10,7 @@ var dadosAlugueis = {};
 
 $(document).ready(function() {
   $(".alert ").hide();
+
   listar_alugueis();
   listarComboImovel();
   listarComboLocador();
@@ -37,6 +38,10 @@ function listarComboImovel() {
       });
     }
   );
+}
+
+function atualizaPagina(){
+        window.location.href = "http://localhost:8080/topicos-BD/cad_imoveis/View/index.php";
 }
 
 function listarComboLocador() {
@@ -86,9 +91,9 @@ function listar_alugueis() {
           <td><p id="dt_inicio`+[i]+`"> ` +
           data[i]["dt_loca"] +
           ` </p></td>
-          <td> ` +
-          data[i]["situacao"] +
-          ` </td>
+          <td> `+((data[i]["situacao"]==="locado")?`
+          <img src="http://localhost:8080/topicos-BD/cad_imoveis/js/img/locado.png"  WIDTH="25" HEIGHT="25"  alt="LOCADO"></img>
+          `:`<img src="http://localhost:8080/topicos-BD/cad_imoveis/js/img/encerrado.png"  WIDTH="25" HEIGHT="25"  alt="LOCADO"></img>`)  +` </td>
             <td class="buttons-actions" style="text-align:center">
             <button class="btn btn-outline-dark"   onclick="pagamentos(`+[i]+`)">Confirmar Pgt </button> 
             </td></tr>`
@@ -122,6 +127,7 @@ function pagamentos(cod_loca) {
       data = JSON.parse(data);
       if (data.codigo==1){
         console.log('cadastrado');
+     
         $("#locacao_body").load("http://localhost:8080/topicos-BD/cad_imoveis/View/pagamentos");
           confirmaPagamento(cod_loca);
        
@@ -149,7 +155,7 @@ function confirmaPagamento(cod_loca){
 }
 
  function atualizarPgto(){
-  alert("alou");
+
   var pagamento = {
                 'cod_loca':$("#cod_locacao").val(),
                 'numRecibo':$("#recibo").val(),
@@ -164,8 +170,13 @@ function confirmaPagamento(cod_loca){
     if (data.codigo==1){
      
       console.log('atualizado');
+       $("#modal_resposta_pgto").modal('show');
+       $("#msg-pgto").text(data.msg);
+       $("#msg-pergunta").text("Deseja gerar o recibo? "); 
     }else{
-      console.log('nao atualizado');
+      $("#modal_resposta_pgto").modal('show');
+      $("#msg-pgto").text(data.msg);
+      $("#msg-pergunta").text("Tente novamente! ");
     }
   }); 
 
