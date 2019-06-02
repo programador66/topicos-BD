@@ -29,6 +29,16 @@ class Locacao_model extends Conexao
         return $this->retorno;
     }
 
+    public function atualizarSituacao($cod_loca, $situacao){
+       
+        $this->query = "update cad_locacao set situacao = '{$situacao}' where cod_loca = $cod_loca";
+        // print_r($this->query);exit();
+        $stmt = $this->pdo->prepare($this->query);
+        $this->retorno = $stmt->execute();
+
+        return $this->retorno;
+    }
+
     public function cadastrarLocacao($imovel, $cliente, $valor, $valor_ext, $dt_loca, $situacao)
     {
 

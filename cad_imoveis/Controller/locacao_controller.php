@@ -56,26 +56,27 @@ if ($funcao == 'listar') {
 
     }
 }
-//else if ($funcao == 'editar') {
+else if ($funcao == 'atualizarSituacao') {
 
-//     $cod_imovel = $_POST['codigo_imovel'];
-//     $descr_imovel = $_POST['descricao'];
+    $cod_loca = $_POST['codpg'];
+    $situacao = $_POST['situacao'];  
 
-//     $imovel = new cad_imovel_model();
-//     $atualizar = $imovel->editar($cod_imovel, $descr_imovel);
+    $locacaoSituacao = new Locacao_model();
+    $response = $locacaoSituacao->atualizarSituacao($cod_loca, $situacao);
 
-//     if ($atualizar) {
-//         $retorno = array("codigo" => 1, "msg" => "Atualizado com sucesso!");
-//         echo json_encode($retorno);
+    if ($response) {
+        $retorno = array("codigo" => 1, "msg" => "Atualizado com sucesso!");
+        echo json_encode($retorno);
 
-//     } else {
+    } else {
 
-//         $retorno = array("codigo" => 0, "msg" => "erro ao Atualizar os dados!");
-//         echo json_encode($retorno);
+        $retorno = array("codigo" => 0, "msg" => "erro ao Atualizar os dados!");
+        echo json_encode($retorno);
 
-//     }
+    }
 
-// } else {
+}
+// else {
 //     $retorno = array("codigo" => 0, "msg" => "Erro contato o ADM!");
 //     echo json_encode($retorno);
 // }

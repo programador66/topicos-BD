@@ -23,17 +23,21 @@ class Pagamentos_model extends Conexao
         return $this->retorno;
     }
 
-    // public function listarImovelAlugueis()
-    // {
+    public function geraPdfPgto($codpg)
+    {
 
-    //     $this->query = ' select * from cad_imovel where cod_imo not in(select codimo_loca from cad_locacao )';
+        $this->query = "Select * From cad_pgto as cp inner join  cad_locacao as cl
+                            on cp.codloca = cl.cod_loca inner join  cad_locador as cdr 
+                            on cl.codloc_loca = cdr.codloc inner join cad_imovel as cm
+                            on cl.codimo_loca = cm.cod_imo
+                            Where codpg = {$codpg}";
 
-    //     $stmt = $this->pdo->prepare($this->query);
-    //     $stmt->execute();
-    //     $this->retorno = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        $stmt = $this->pdo->prepare($this->query);
+        $stmt->execute();
+        $this->retorno = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
-    //     return $this->retorno;
-    // }
+        return $this->retorno;
+    }
 
     public function cadastrarPagamentos($codloca_pg,$data_pg,$num_rec,$dt_inicio,$dt_venc)
     {

@@ -173,19 +173,75 @@ function confirmaPagamento(cod_loca){
 
   $.post(url_pgto + "funcao=atualizar",pagamento,function(data){
     data = JSON.parse(data);
-    if (data.codigo==1){
-     
-      console.log('atualizado');
-       $("#modal_resposta_pgto").modal('show');
-       $("#msg-pgto").text(data.msg);
-       $("#msg-pergunta").text("Deseja gerar o recibo? "); 
-    }else{
-      $("#modal_resposta_pgto").modal('show');
-      $("#msg-pgto").text(data.msg);
-      $("#msg-pergunta").text("Tente novamente! ");
-    }
+      if (data.codigo==1){
+        funcaoAtualizarSituacao(); 
+      }else{
+        $("#modal_resposta_pgto").modal('show');
+        $("#msg-pgto").text(data.msg);
+        $("#msg-pergunta").text("Tente novamente! ");
+      }
   }); 
 
+}
+
+function geraPdf(){
+
+
+  var codpg = $("#cod_pagamento").val();
+  
+    window.open(url_pgto + "funcao=geraPdfPagto&codpg="+codpg);
+    $("#cod_pagamento").val("");
+    $("#cod_locacao").val("");
+    $("#dt_pgto").val("");
+    $("#dt_inicio").val("");
+    $("#dt_vence").val("");
+    $("#recibo").val("");
+    $("#nome").val("");
+}
+
+function funcaoAtualizarSituacao(){
+  var codpg = $("#cod_locacao").val();
+  var situacao = {
+                  'codpg':codpg,
+                  'situacao':'locado'
+                  };
+
+  $.post(url + "funcao=atualizarSituacao",situacao,function(data){
+    data = JSON.parse(data);
+        if (data.codigo==1){  
+          $("#modal_resposta_pgto").modal('show');
+          $("#msg-pgto").text(data.msg);
+          $("#msg-pergunta").text("Deseja gerar o recibo? "); 
+        }else{
+          disparaPagamento(codpg);
+          $("#modal_resposta_pgto").modal('show');
+          $("#msg-pgto").text(data.msg);
+          $("#msg-pergunta").text("Tente novamente! ");
+        }
+
+  });
+}
+
+function disparaPagamento(codpg){
+
+  var situacao = {
+    'codpg':codpg,
+    'situacao':'encerrado'
+    };
+
+  $.post(url + "funcao=atualizarSituacao",situacao,function(data){
+    data = JSON.parse(data);
+        if (data.codigo==1){  
+          $("#modal_resposta_pgto").modal('show');
+          $("#msg-pgto").text(data.msg);
+          $("#msg-pergunta").text("Deseja gerar o recibo? "); 
+        }else{
+          $("#modal_resposta_pgto").modal('show');
+          $("#msg-pgto").text(data.msg);
+          $("#msg-pergunta").text("Tente novamente! ");
+        }
+
+  });
 }
 
 function cadastrar_locacao() {

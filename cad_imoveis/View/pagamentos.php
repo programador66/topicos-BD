@@ -97,7 +97,7 @@
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" onclick="atualizaPagina()">Fechar</button>
                     <button type="button" class="btn btn-primary" data-dismiss="modal"
-                        onclick="">Gerar</button>
+                        onclick="geraPdf()">Gerar</button>
                 </div>
             </div>
         </div>
