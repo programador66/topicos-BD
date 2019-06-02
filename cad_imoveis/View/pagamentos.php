@@ -77,7 +77,7 @@
         <button type="submit" class="btn btn-outline-dark" onclick="atualizarPgto()">Confirmar</button>
           
     </div>
-        <img src="../img/locado.png"  alt=""><img>
+        
      <!-- modal cadastrar imovel -->
      <div class="modal fade" id="modal_resposta_pgto" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
         aria-hidden="true">

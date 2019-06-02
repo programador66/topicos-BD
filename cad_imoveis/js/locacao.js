@@ -94,11 +94,17 @@ function listar_alugueis() {
           <td> `+((data[i]["situacao"]==="locado")?`
           <img src="http://localhost:8080/topicos-BD/cad_imoveis/js/img/locado.png"  WIDTH="25" HEIGHT="25"  alt="LOCADO"></img>
           `:`<img src="http://localhost:8080/topicos-BD/cad_imoveis/js/img/encerrado.png"  WIDTH="25" HEIGHT="25"  alt="LOCADO"></img>`)  +` </td>
-            <td class="buttons-actions" style="text-align:center">
-            <button class="btn btn-outline-dark"   onclick="pagamentos(`+[i]+`)">Confirmar Pgt </button> 
-            </td></tr>`
+            <td class="buttons-actions" style="text-align:center"><button class="btn btn-dark" id="btpg`+[i]+`" onclick="pagamentos(`+[i]+`) ">Confirmar Pgt </button></td></tr>`
       );
+      
+      if (data[i]['situacao']=="locado"){
+        $("#btpg"+[i]).attr("disabled",'true');
+      }
+      
     });
+
+
+
   });
 }
 

@@ -131,16 +131,6 @@
                             <input type="text" class="form-control input-cadastro" id="valor_ext" name="valor_ext"
                                 required>
                         </div>
-                        <div class="form-group">
-                            <label for="recipient-name" class="col-form-label .input-cadastro">Situação:</label>
-                            <select class="custom-select" id="situacao" name="situacao">
-                                <option selected>escolha..</option>
-                                <option value="locado">locado</option>
-                                <option value="encerrado">encerrado</option>
-                            </select>
-                        </div>
-
-
 
                     </form>
                 </div>

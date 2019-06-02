@@ -23,7 +23,7 @@ if ($funcao == 'listar') {
     $valor = str_replace(',', '.', str_replace('.', '', $_POST['valor']));
     $valor_ext = $_POST['valor_ext'];
     $dt_loca = $_POST['dt_loca'];
-    $situacao = $_POST['situacao'];
+    $situacao = "encerrado";
 
     $locacao = new locacao_model();
     $cadastro = $locacao->cadastrarLocacao($imovel, $cliente, $valor, $valor_ext, $dt_loca, $situacao);
